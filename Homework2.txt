@@ -1,0 +1,54 @@
+Sub alphaPractice()
+
+#Variable declaration
+
+Dim ticker As String
+    Dim vol As Double
+    vol = 0
+    Dim Summary_Table_Row As Integer
+    Dim Output_Row As Integer
+    Dim year_open As Double
+    Dim year_close As Double
+    Dim lastrow As Long
+  
+#Calculate last row
+
+    lastrow = Cells(Rows.Count, 1).End(xlUp).Row
+
+#print column headers
+
+    Cells(1, 9).Value = "ticker"
+    Cells(1, 12).Value = "Total Stock Vol"
+
+# Starting row Index
+
+       Output_Row = 2
+
+#Open the loop to read through data and calculate Total Stock Volume
+
+    For i = 2 To lastrow
+    ticker = Cells(i, 1)
+      If Cells(i, 1) = Cells(i + 1, 1) Then
+      
+
+
+#Calculate Total stock Volume and group it by ticker
+          
+          vol = vol + Cells(i, 7).Value
+
+      Else
+
+          vol = vol + Cells(i, 7).Value
+          Cells(Output_Row, 12) = vol
+          Cells(Output_Row, 9) = ticker
+          vol = 0
+          Output_Row = Output_Row + 1
+          
+
+      End If
+
+
+    Next i
+
+End Sub
+
